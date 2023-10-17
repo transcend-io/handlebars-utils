@@ -19,7 +19,10 @@
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+<<<<<<< HEAD
     "useUnknownInCatchVariables": false,
+=======
+>>>>>>> main
 
     /* Module Resolution Options */
     "moduleResolution": "node",
@@ -27,7 +30,10 @@
     "typeRoots": ["@types", "node_modules/@types"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
+<<<<<<< HEAD
     "skipLibCheck": true,
+=======
+>>>>>>> main
     "forceConsistentCasingInFileNames": true,
     "outDir": "build",
     "tsBuildInfoFile": "./build/tsbuildinfo",
