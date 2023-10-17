@@ -299,9 +299,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@transcend-io/privacy-types@workspace:.":
+"@transcend-io/handlebars-utils@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@transcend-io/privacy-types@workspace:."
+  resolution: "@transcend-io/handlebars-utils@workspace:."
   dependencies:
     "@types/chai": ^4.3.0
     "@types/mocha": ^9.1.0
