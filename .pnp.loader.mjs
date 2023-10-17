@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { URL as URL$1, fileURLToPath, pathToFileURL } from 'url';
 import fs from 'fs';
 import path from 'path';
@@ -13,19 +12,6 @@ const PortablePath = {
   dot: `.`,
   parent: `..`
 };
-=======
-import { URL, fileURLToPath, pathToFileURL } from 'url';
-import fs from 'fs';
-import path from 'path';
-import moduleExports, { Module } from 'module';
-
-var PathType;
-(function(PathType2) {
-  PathType2[PathType2["File"] = 0] = "File";
-  PathType2[PathType2["Portable"] = 1] = "Portable";
-  PathType2[PathType2["Native"] = 2] = "Native";
-})(PathType || (PathType = {}));
->>>>>>> main
 const npath = Object.create(path);
 const ppath = Object.create(path.posix);
 npath.cwd = () => process.cwd();
@@ -81,7 +67,6 @@ function toPortablePath(p) {
     p = `/unc/${uncWindowsPathMatch[1] ? `.dot/` : ``}${uncWindowsPathMatch[2]}`;
   return p;
 }
-<<<<<<< HEAD
 function convertPath(targetPathUtils, sourcePath) {
   return targetPathUtils === npath ? fromPortablePath(sourcePath) : toPortablePath(sourcePath);
 }
@@ -1348,8 +1333,6 @@ const HAS_CONSOLIDATED_HOOKS = major > 16 || major === 16 && minor >= 12;
 const HAS_UNFLAGGED_JSON_MODULES = major > 17 || major === 17 && minor >= 5 || major === 16 && minor >= 15;
 const HAS_JSON_IMPORT_ASSERTION_REQUIREMENT = major > 17 || major === 17 && minor >= 1 || major === 16 && minor > 14;
 const WATCH_MODE_MESSAGE_USES_ARRAYS = major > 19 || major === 19 && minor >= 2 || major === 18 && minor >= 13;
-=======
->>>>>>> main
 
 const builtinModules = new Set(Module.builtinModules || Object.keys(process.binding(`natives`)));
 const isBuiltinModule = (request) => request.startsWith(`node:`) || builtinModules.has(request);
@@ -1378,11 +1361,7 @@ function readPackage(requestPath) {
   return JSON.parse(fs.readFileSync(jsonPath, `utf8`));
 }
 
-<<<<<<< HEAD
 async function tryReadFile$1(path2) {
-=======
-async function tryReadFile(path2) {
->>>>>>> main
   try {
     return await fs.promises.readFile(path2, `utf8`);
   } catch (error) {
@@ -1393,22 +1372,15 @@ async function tryReadFile(path2) {
 }
 function tryParseURL(str, base) {
   try {
-<<<<<<< HEAD
     return new URL$1(str, base);
-=======
-    return new URL(str, base);
->>>>>>> main
   } catch {
     return null;
   }
 }
-<<<<<<< HEAD
 let entrypointPath = null;
 function setEntrypointPath(file) {
   entrypointPath = file;
 }
-=======
->>>>>>> main
 function getFileFormat(filepath) {
   var _a, _b;
   const ext = path.extname(filepath);
@@ -1420,7 +1392,6 @@ function getFileFormat(filepath) {
       return `commonjs`;
     }
     case `.wasm`: {
-<<<<<<< HEAD
       throw new Error(
         `Unknown file extension ".wasm" for ${filepath}`
       );
@@ -1431,12 +1402,6 @@ function getFileFormat(filepath) {
       throw new Error(
         `Unknown file extension ".json" for ${filepath}`
       );
-=======
-      throw new Error(`Unknown file extension ".wasm" for ${filepath}`);
-    }
-    case `.json`: {
-      throw new Error(`Unknown file extension ".json" for ${filepath}`);
->>>>>>> main
     }
     case `.js`: {
       const pkg = readPackageScope(filepath);
@@ -1445,12 +1410,7 @@ function getFileFormat(filepath) {
       return (_a = pkg.data.type) != null ? _a : `commonjs`;
     }
     default: {
-<<<<<<< HEAD
       if (entrypointPath !== filepath)
-=======
-      const isMain = process.argv[1] === filepath;
-      if (!isMain)
->>>>>>> main
         return null;
       const pkg = readPackageScope(filepath);
       if (!pkg)
@@ -1484,7 +1444,6 @@ async function getSource$1(urlString, context, defaultGetSource) {
   };
 }
 
-<<<<<<< HEAD
 async function load$1(urlString, context, nextLoad) {
   var _a;
   const url = tryParseURL(urlString);
@@ -2000,34 +1959,10 @@ async function resolve$1(originalSpecifier, context, nextResolve) {
   const { findPnpApi } = moduleExports;
   if (!findPnpApi || isBuiltinModule(originalSpecifier))
     return nextResolve(originalSpecifier, context, nextResolve);
-=======
-async function load$1(urlString, context, defaultLoad) {
-  const url = tryParseURL(urlString);
-  if ((url == null ? void 0 : url.protocol) !== `file:`)
-    return defaultLoad(urlString, context, defaultLoad);
-  const filePath = fileURLToPath(url);
-  const format = getFileFormat(filePath);
-  if (!format)
-    return defaultLoad(urlString, context, defaultLoad);
-  return {
-    format,
-    source: await fs.promises.readFile(filePath, `utf8`)
-  };
-}
-
-const pathRegExp = /^(?![a-zA-Z]:[\\/]|\\\\|\.{0,2}(?:\/|$))((?:node:)?(?:@[^/]+\/)?[^/]+)\/*(.*|)$/;
-const isRelativeRegexp = /^\.{0,2}\//;
-async function resolve$1(originalSpecifier, context, defaultResolver) {
-  var _a;
-  const {findPnpApi} = moduleExports;
-  if (!findPnpApi || isBuiltinModule(originalSpecifier))
-    return defaultResolver(originalSpecifier, context, defaultResolver);
->>>>>>> main
   let specifier = originalSpecifier;
   const url = tryParseURL(specifier, isRelativeRegexp.test(specifier) ? context.parentURL : void 0);
   if (url) {
     if (url.protocol !== `file:`)
-<<<<<<< HEAD
       return nextResolve(originalSpecifier, context, nextResolve);
     specifier = fileURLToPath(url);
   }
@@ -2038,31 +1973,14 @@ async function resolve$1(originalSpecifier, context, defaultResolver) {
     return nextResolve(originalSpecifier, context, nextResolve);
   if (specifier.startsWith(`#`))
     return resolvePrivateRequest(specifier, issuer, context, nextResolve);
-=======
-      return defaultResolver(originalSpecifier, context, defaultResolver);
-    specifier = fileURLToPath(url);
-  }
-  const {parentURL, conditions = []} = context;
-  const issuer = parentURL ? fileURLToPath(parentURL) : process.cwd();
-  const pnpapi = (_a = findPnpApi(issuer)) != null ? _a : url ? findPnpApi(specifier) : null;
-  if (!pnpapi)
-    return defaultResolver(originalSpecifier, context, defaultResolver);
->>>>>>> main
   const dependencyNameMatch = specifier.match(pathRegExp);
   let allowLegacyResolve = false;
   if (dependencyNameMatch) {
     const [, dependencyName, subPath] = dependencyNameMatch;
-<<<<<<< HEAD
     if (subPath === `` && dependencyName !== `pnpapi`) {
       const resolved = pnpapi.resolveToUnqualified(`${dependencyName}/package.json`, issuer);
       if (resolved) {
         const content = await tryReadFile$1(resolved);
-=======
-    if (subPath === ``) {
-      const resolved = pnpapi.resolveToUnqualified(`${dependencyName}/package.json`, issuer);
-      if (resolved) {
-        const content = await tryReadFile(resolved);
->>>>>>> main
         if (content) {
           const pkg = JSON.parse(content);
           allowLegacyResolve = pkg.exports == null;
@@ -2081,33 +1999,21 @@ async function resolve$1(originalSpecifier, context, defaultResolver) {
     resultURL.search = url.search;
     resultURL.hash = url.hash;
   }
-<<<<<<< HEAD
   if (!parentURL)
     setEntrypointPath(fileURLToPath(resultURL));
   return {
     url: resultURL.href,
     shortCircuit: true
-=======
-  return {
-    url: resultURL.href
->>>>>>> main
   };
 }
 
 const binding = process.binding(`fs`);
 const originalfstat = binding.fstat;
-<<<<<<< HEAD
 const ZIP_MASK = 4278190080;
 const ZIP_MAGIC = 704643072;
 binding.fstat = function(...args) {
   const [fd, useBigint, req] = args;
   if ((fd & ZIP_MASK) === ZIP_MAGIC && useBigint === false && req === void 0) {
-=======
-const ZIP_FD = 2147483648;
-binding.fstat = function(...args) {
-  const [fd, useBigint, req] = args;
-  if ((fd & ZIP_FD) !== 0 && useBigint === false && req === void 0) {
->>>>>>> main
     try {
       const stats = fs.fstatSync(fd);
       return new Float64Array([
@@ -2128,18 +2034,9 @@ binding.fstat = function(...args) {
   return originalfstat.apply(this, args);
 };
 
-<<<<<<< HEAD
 const resolve = resolve$1;
 const getFormat = HAS_CONSOLIDATED_HOOKS ? void 0 : getFormat$1;
 const getSource = HAS_CONSOLIDATED_HOOKS ? void 0 : getSource$1;
 const load = HAS_CONSOLIDATED_HOOKS ? load$1 : void 0;
-=======
-const [major, minor] = process.versions.node.split(`.`).map((value) => parseInt(value, 10));
-const hasConsolidatedHooks = major > 16 || major === 16 && minor >= 12;
-const resolve = resolve$1;
-const getFormat = hasConsolidatedHooks ? void 0 : getFormat$1;
-const getSource = hasConsolidatedHooks ? void 0 : getSource$1;
-const load = hasConsolidatedHooks ? load$1 : void 0;
->>>>>>> main
 
 export { getFormat, getSource, load, resolve };

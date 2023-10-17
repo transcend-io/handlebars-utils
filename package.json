@@ -2,11 +2,7 @@
   "author": "Transcend Inc.",
   "name": "@transcend-io/handlebars-utils",
   "description": "Utility functions for handlebars templating with Transcend - available in node and client side.",
-<<<<<<< HEAD
   "version": "1.0.0",
-=======
-  "version": "0.0.0",
->>>>>>> main
   "homepage": "https://github.com/transcend-io/handlebars-utils",
   "repository": {
     "type": "git",
@@ -21,7 +17,6 @@
   "scripts": {
     "update:sdks": "yarn set version from sources && yarn sdks base",
     "update:deps": "yarn upgrade-interactive && yarn update:sdks",
-<<<<<<< HEAD
     "build": "yarn tsc --build",
     "clean": "yarn tsc --build --clean",
     "lint": "yarn eslint src --ext .ts",
@@ -43,21 +38,6 @@
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "@yarnpkg/sdks": "^3.0.0-rc.42",
-=======
-    "build": "yarn pnpify tsc --build",
-    "clean": "yarn pnpify tsc --build --clean",
-    "lint": "yarn pnpify eslint src --ext .ts",
-    "prepublish": "yarn build",
-    "test": "yarn pnpify mocha './src/**/*.test.ts'"
-  },
-  "devDependencies": {
-    "@types/chai": "^4.3.0",
-    "@types/mocha": "^9.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "@yarnpkg/pnpify": "^3.1.1",
-    "@yarnpkg/sdks": "^2.6.0",
->>>>>>> main
     "chai": "^4.3.6",
     "depcheck": "^1.4.3",
     "eslint": "^8.10.0",
@@ -66,19 +46,10 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsdoc": "^37.9.4",
-<<<<<<< HEAD
     "mocha": "^10.1.0",
     "prettier": "^2.5.1",
     "ts-node": "^10.9.1",
     "typescript": "=5.0.4"
   },
   "packageManager": "yarn@3.5.0"
-=======
-    "mocha": "^9.2.1",
-    "prettier": "^2.5.1",
-    "ts-node": "^10.5.0",
-    "typescript": "^4.5.5"
-  },
-  "packageManager": "yarn@3.2.0"
->>>>>>> main
 }

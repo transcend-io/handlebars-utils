@@ -1,21 +1,13 @@
 #!/usr/bin/env node
 
 const {existsSync} = require(`fs`);
-<<<<<<< HEAD
 const {createRequire} = require(`module`);
-=======
-const {createRequire, createRequireFromPath} = require(`module`);
->>>>>>> main
 const {resolve} = require(`path`);
 
 const relPnpApiPath = "../../../../.pnp.cjs";
 
 const absPnpApiPath = resolve(__dirname, relPnpApiPath);
-<<<<<<< HEAD
 const absRequire = createRequire(absPnpApiPath);
-=======
-const absRequire = (createRequire || createRequireFromPath)(absPnpApiPath);
->>>>>>> main
 
 const moduleWrapper = tsserver => {
   if (!process.versions.pnp) {
@@ -69,7 +61,6 @@ const moduleWrapper = tsserver => {
           //
           // Ref: https://github.com/microsoft/vscode/issues/105014#issuecomment-686760910
           //
-<<<<<<< HEAD
           // 2021-10-08: VSCode changed the format in 1.61.
           // Before | ^zip:/c:/foo/bar.zip/package.json
           // After  | ^/zip//c:/foo/bar.zip/package.json
@@ -82,17 +73,10 @@ const moduleWrapper = tsserver => {
           // Before | ^/zip/c:/foo/bar.zip/package.json
           // After  | ^/zip//c:/foo/bar.zip/package.json
           //
-=======
-          // Update Oct 8 2021: VSCode changed their format in 1.61.
-          // Before | ^zip:/c:/foo/bar.zip/package.json
-          // After  | ^/zip//c:/foo/bar.zip/package.json
-          //
->>>>>>> main
           case `vscode <1.61`: {
             str = `^zip:${str}`;
           } break;
 
-<<<<<<< HEAD
           case `vscode <1.66`: {
             str = `^/zip/${str}`;
           } break;
@@ -101,8 +85,6 @@ const moduleWrapper = tsserver => {
             str = `^/zip${str}`;
           } break;
 
-=======
->>>>>>> main
           case `vscode`: {
             str = `^/zip/${str}`;
           } break;
@@ -127,11 +109,8 @@ const moduleWrapper = tsserver => {
             str = `zip:${str}`;
           } break;
         }
-<<<<<<< HEAD
       } else {
         str = str.replace(/^\/?/, process.platform === `win32` ? `` : `/`);
-=======
->>>>>>> main
       }
     }
 
@@ -148,25 +127,16 @@ const moduleWrapper = tsserver => {
         return process.platform === `win32`
           ? str.replace(/^.*zipfile:\//, ``)
           : str.replace(/^.*zipfile:/, ``);
-      } break;
-
+      }
       case `neovim`: {
         str = str.replace(/\.zip::/, `.zip/`);
         // The path for neovim is in format of zipfile:///<pwd>/.yarn/...
         return str.replace(/^zipfile:\/\//, ``);
-      } break;
-
+      }
       case `vscode`:
       default: {
-<<<<<<< HEAD
         return str.replace(/^\^?(zip:|\/zip(\/ts-nul-authority)?)\/+/, process.platform === `win32` ? `` : `/`)
-=======
-        return process.platform === `win32`
-          ? str.replace(/^\^?(zip:|\/zip)\/+/, ``)
-          : str.replace(/^\^?(zip:|\/zip)\/+/, `/`);
->>>>>>> main
-      } break;
-    }
+      }    }
   }
 
   // Force enable 'allowLocalPluginLoads'
@@ -203,7 +173,6 @@ const moduleWrapper = tsserver => {
         typeof parsedMessage.arguments.hostInfo === `string`
       ) {
         hostInfo = parsedMessage.arguments.hostInfo;
-<<<<<<< HEAD
         if (hostInfo === `vscode` && process.env.VSCODE_IPC_HOOK) {
           const [, major, minor] = (process.env.VSCODE_IPC_HOOK.match(
             // The RegExp from https://semver.org/ but without the caret at the start
@@ -219,10 +188,6 @@ const moduleWrapper = tsserver => {
               hostInfo += ` <1.68`;
             }
           }
-=======
-        if (hostInfo === `vscode` && process.env.VSCODE_IPC_HOOK && process.env.VSCODE_IPC_HOOK.match(/Code\/1\.([1-5][0-9]|60)\./)) {
-          hostInfo += ` <1.61`;
->>>>>>> main
         }
       }
 
