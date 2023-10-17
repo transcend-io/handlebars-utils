@@ -2,7 +2,7 @@
   "author": "Transcend Inc.",
   "name": "@transcend-io/handlebars-utils",
   "description": "Utility functions for handlebars templating with Transcend - available in node and client side.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/transcend-io/handlebars-utils",
   "repository": {
     "type": "git",
