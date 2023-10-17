@@ -36,6 +36,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: yarn install
       - run: yarn test
 
   run-depcheck:
@@ -46,7 +47,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: yarn pnpify depcheck
+      - run: yarn depcheck
 
   run-pre-commits:
     runs-on: ubuntu-latest
