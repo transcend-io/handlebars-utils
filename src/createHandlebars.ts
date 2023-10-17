@@ -5,6 +5,7 @@ import { ObjByString } from '@transcend-io/type-utils';
 import { cases } from './change-case';
 
 // TODO: https://transcend.height.app/T-30349 - de-duplicate this with cli and node-util
+export { Handlebars };
 
 /**
  * Input for creating a handlebars instance
