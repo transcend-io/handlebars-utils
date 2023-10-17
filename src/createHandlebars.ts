@@ -8,6 +8,27 @@ import { cases } from './change-case';
 export { Handlebars };
 
 /**
+ * Given a file name, return the desirable name for a handlebars extension
+ * The extension is in camel case without the file suffix, and all slashes
+ * and spaces get removed
+ *
+ * @param fileName - Filename
+ * @param extension - File extension
+ * @returns Partial name
+ */
+export function getPartialNameFromFileName(
+  fileName: string,
+  extension = 'hbs',
+): string {
+  return cases.camelCase(
+    fileName
+      .slice(0, fileName.length - `.${extension}`.length)
+      .split('/')
+      .pop(),
+  );
+}
+
+/**
  * Input for creating a handlebars instance
  */
 export interface HandlebarsInput {
