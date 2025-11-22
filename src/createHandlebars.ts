@@ -118,6 +118,24 @@ export const DEFAULT_HANDLEBARS_HELPERS = {
       return v;
     }),
   /**
+   * Pretty JSON stringify
+   *
+   * @param obj - The object to convert
+   * @returns The object stringified
+   */
+  toJSONPretty: <T extends ObjByString>(obj: T) =>
+    JSON.stringify(
+      obj,
+      (k, v) => {
+        // Necessary, else functions don't get written.
+        if (typeof v === 'function') {
+          return v.toString();
+        }
+        return v;
+      },
+      2,
+    ),
+  /**
    * Compares two string to see if they're sorted
    *
    * @param arg1 - Some string
