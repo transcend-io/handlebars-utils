@@ -71,6 +71,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 22.x
+      - uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 6
+          max_attempts: 3
+          retry_on: error
+          command: yarn install --immutable
       - uses: pre-commit/action@v3.0.0
         with:
           extra_args: --source ${{ github.event.pull_request.base.sha || 'HEAD~1' }} --origin ${{ github.event.pull_request.head.sha || 'HEAD' }}
