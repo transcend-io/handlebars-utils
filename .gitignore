@@ -8,6 +8,8 @@ build/
 # Npmrc
 .npmrc
 
+.yarn/cache/*
+
 ### Code ###
 # Visual Studio Code - https://code.visualstudio.com/
 .settings/

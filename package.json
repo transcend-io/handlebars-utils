@@ -2,7 +2,7 @@
   "author": "Transcend Inc.",
   "name": "@transcend-io/handlebars-utils",
   "description": "Utility functions for handlebars templating with Transcend - available in node and client side.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "homepage": "https://github.com/transcend-io/handlebars-utils",
   "repository": {
     "type": "git",
@@ -51,5 +51,5 @@
     "ts-node": "^10.9.1",
     "typescript": "=5.0.4"
   },
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@4.5.3"
 }

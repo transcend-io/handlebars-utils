@@ -123,18 +123,26 @@ export const DEFAULT_HANDLEBARS_HELPERS = {
    * @param obj - The object to convert
    * @returns The object stringified
    */
-  toJSONPretty: <T extends ObjByString>(obj: T) =>
-    JSON.stringify(
-      obj,
-      (k, v) => {
-        // Necessary, else functions don't get written.
-        if (typeof v === 'function') {
-          return v.toString();
-        }
-        return v;
-      },
-      2,
-    ),
+  toJSONPretty: (obj: ObjByString) => {
+    let value: unknown = obj;
+
+    // if it’s a JSON string, pretty-print it
+    if (typeof obj === 'string') {
+      try {
+        value = JSON.parse(obj);
+      } catch {
+        value = obj;
+      }
+    }
+
+    const json = JSON.stringify(value, null, 2);
+    const escaped = Handlebars.Utils.escapeExpression(json);
+
+    // TipTap’s CodeBlockLowlight will recognize <pre><code> and render it as a code block
+    return new Handlebars.SafeString(
+      `<pre><code class="language-json">${escaped}</code></pre>`,
+    );
+  },
   /**
    * Compares two string to see if they're sorted
    *
